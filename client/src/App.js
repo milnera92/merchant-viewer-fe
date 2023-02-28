@@ -5,7 +5,7 @@ const App = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch("https://merchant-viewer.herokuapp.com/index.php");
+      const response = await fetch("https://merchant-viewer.herokuapp.com");
       const jsonData = await response.json();
       setData(jsonData);
     };
