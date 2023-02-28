@@ -36,14 +36,14 @@ console.log(data);
     <div>
       <h1>Terminals:</h1>
       {data.terminals.map((terminal) => (
-        <div key={terminal.id}>{terminal.location}</div>
+        <div key={terminal.id}>LOCATION{terminal.location}</div>
       ))}
     </div>
 
     <div>
       <h1>Transactions:</h1>
       {data.transactions.map((transaction) => (
-        <div key={transaction.id}>{transaction.terminal_id}</div>
+        <div key={transaction.id}>ID{transaction.terminal_id}${transaction.amount}</div>
       ))}
     </div>
     </div>
