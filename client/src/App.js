@@ -20,12 +20,14 @@ const App = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch("http://localhost:8000/api.php");
+      const response = await fetch("http://localhost:8000/index.php");
       const jsonData = await response.json();
       setData(jsonData);
     };
     fetchData();
   }, []);
+
+console.log(data)
 
   return (
     <div>
