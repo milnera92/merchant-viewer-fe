@@ -1,19 +1,6 @@
 import React, { useState, useEffect } from "react";
-// import styled from "styled-components";
+import styled from "styled-components";
 
-// const Table = styled.table`
-//   border-collapse: collapse;
-//   width: 100%;
-//   th,
-//   td {
-//     border: 1px solid black;
-//     padding: 8px;
-//     text-align: left;
-//   }
-//   th {
-//     background-color: #f2f2f2;
-//   }
-// `;
 
 const App = () => {
   const [data, setData] = useState(null);
@@ -27,18 +14,38 @@ const App = () => {
     fetchData();
   }, []);
 
-  console.log(data.merchants[0].name);
+
 
 if (!data) {
   return <div>Loading...</div>;
 }
+console.log(data);
+// console.log(data.transactions[0]);
+// console.log(data.terminals[0]);
+// console.log(data.merchants[0]);
 
   return (
+    <div>
     <div>
       <h1>Merchants:</h1>
       {data.merchants.map((merchant) => (
         <div key={merchant.id}>{merchant.name}</div>
       ))}
+    </div>
+
+    <div>
+      <h1>Terminals:</h1>
+      {data.terminals.map((terminal) => (
+        <div key={terminal.id}>{terminal.location}</div>
+      ))}
+    </div>
+
+    <div>
+      <h1>Transactions:</h1>
+      {data.transactions.map((transaction) => (
+        <div key={transaction.id}>{transaction.terminal_id}</div>
+      ))}
+    </div>
     </div>
   );
 };
