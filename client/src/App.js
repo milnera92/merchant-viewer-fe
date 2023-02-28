@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from "react";
-import styled from "styled-components";
-
 
 const App = () => {
   const [data, setData] = useState(null);
@@ -20,9 +18,7 @@ if (!data) {
   return <div>Loading...</div>;
 }
 console.log(data);
-// console.log(data.transactions[0]);
-// console.log(data.terminals[0]);
-// console.log(data.merchants[0]);
+
 
   return (
     <div>
