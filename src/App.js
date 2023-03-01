@@ -3,17 +3,15 @@ import styled from "styled-components";
 
 const Container = styled.div`
   display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
   flex-wrap: wrap;
-  justify-content: space-between;
   gap: 20px;
   padding: 20px;
+  min-height: 100vh;
   background-color: #3b5998;
   color: black;
-  gap: 20px;
-
-  & > div {
-    width: 300px;
-  }
 `;
 
 const Card = styled.div`
@@ -21,9 +19,25 @@ const Card = styled.div`
   border: 4px solid #a6c8ff;
   box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
   border-radius: 10px;
-  margin: 10px;
+  margin: 10px auto;
   padding: 10px;
   width: 350px;
+`;
+
+const Header = styled.header`
+  background-color: #3b5998;
+  border-bottom: 2px solid black;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+`;
+
+const Footer = styled.footer`
+  background-color: #3b5998;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+  border-top: 2px solid black;
 `;
 
 const MerchantCard = styled(Card)`
@@ -34,10 +48,7 @@ const MerchantName = styled.h2`
   color: #444;
 `;
 
-const TerminalCard = styled(Card)`
-  display: flex;
-  flex-direction: column;
-`;
+const TerminalCard = styled(Card)``;
 
 const TerminalName = styled.h3`
   color: #777;
@@ -53,6 +64,7 @@ const TransactionName = styled.h4`
 
 const TotalSales = styled.div`
   color: #444;
+  margin-top: auto;
 `;
 
 const Amount = styled.div`
@@ -91,6 +103,9 @@ const App = () => {
 
   return (
     <Container>
+            <Header>
+        <h1>Merchant Portal</h1>
+      </Header>
       {data.merchants.map((merchant) => (
         <MerchantCard key={merchant.id}>
           <MerchantName>{merchant.name}</MerchantName>
@@ -121,7 +136,11 @@ const App = () => {
           </div>
         </MerchantCard>
       ))}
+            <Footer>
+        <p>&copy; 2023 Merchant Portal. All rights reserved.</p>
+      </Footer>
     </Container>
+    
   );
 };
 
