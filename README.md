@@ -8,10 +8,11 @@ Backend is located here: https://github.com/milnera92/merchant-viewer-be. It is 
 
 ## So Far....
 
-Started by created a MySQL Database hostwed on Amazon Web Services RDS:
+Started by created a MySQL Database hosted on Amazon Web Services RDS:
 ![image](https://user-images.githubusercontent.com/95140821/222036055-c6e3ee06-937c-4172-acd1-c1ccc94e382a.png)
 
-Next up, we will go to MySQL Workbench and connected to to this database, make a new schema calledd db1, then start making some tables to seed our test data into:
+Next up, we will go to MySQL Workbench and connect to the database.
+We will then make a new schema called "db1", and start creating some tables:
 ![image](https://user-images.githubusercontent.com/95140821/222036218-187d5145-2bab-4320-985e-f43cafad6b12.png)
 
 Seeding in some test data:
