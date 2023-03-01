@@ -49,5 +49,9 @@ The front end is hosted on both Render and Vercel (for testing purposes) but the
 - Added functions for Merchant and Terminal totals:
 ![image](https://user-images.githubusercontent.com/95140821/222202301-eba1d590-8ed3-46e3-abe4-0a848559c6a7.png)
 
+- Finally will format, add some style, and the totals:
+- ![image](https://user-images.githubusercontent.com/95140821/222237036-84a16d80-c8fd-443e-9c03-87b08ce15624.png)
+
+
 
 
