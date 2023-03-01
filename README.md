@@ -37,6 +37,9 @@ The front end is hosted on both Render and Vercel (for testing purposes) but the
 - Get all data from all tables in database, and format it as a JSON response that will be consumable via fetch request from  React Front end:
 ![image](https://user-images.githubusercontent.com/95140821/222037056-f9df5ee7-f231-4472-a253-02b33f593005.png)
 
+- Let's take a look at the object we get in response to out GET request to the API:
+![image](https://user-images.githubusercontent.com/95140821/222236858-de89c693-7562-4631-88a4-18127433bd90.png)
+
 - Here is the fetch request in React. After this, I map through the data:
 ![image](https://user-images.githubusercontent.com/95140821/222037117-d6f6dc9b-3d60-406e-83ab-670c3a6492b7.png)
 
