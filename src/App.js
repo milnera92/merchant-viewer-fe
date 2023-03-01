@@ -1,50 +1,47 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
-const AppContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  margin: 20px;
-`;
-
-const MerchantContainer = styled.div`
-  background-color: #f5f5f5;
+const Container = styled.div`
+  background-color: #f2f2f2;
   padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  flex: 1 1 300px;
 `;
 
-const MerchantTitle = styled.h2`
-  margin: 0;
-  font-size: 24px;
-`;
-
-const TerminalContainer = styled.div`
-  background-color: #fff;
+const MerchantCard = styled.div`
+  border: 1px solid #ccc;
   padding: 10px;
+  margin-bottom: 10px;
+`;
+
+const MerchantName = styled.h2`
+  color: #444;
+`;
+
+const TerminalCard = styled.div`
   border: 1px solid #ddd;
-  border-radius: 5px;
-  margin-top: 10px;
-`;
-
-const TerminalTitle = styled.h3`
-  margin: 0;
-  font-size: 18px;
-`;
-
-const TransactionContainer = styled.div`
-  background-color: #f5f5f5;
   padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  margin-top: 10px;
+  margin-bottom: 10px;
 `;
 
-const TransactionTitle = styled.h4`
-  margin: 0;
-  font-size: 16px;
+const TerminalName = styled.h3`
+  color: #777;
+`;
+
+const TransactionCard = styled.div`
+  border: 1px solid #eee;
+  padding: 10px;
+  margin-bottom: 10px;
+`;
+
+const TransactionName = styled.h4`
+  color: #999;
+`;
+
+const TotalSales = styled.div`
+  color: #444;
+`;
+
+const Amount = styled.div`
+  color: #777;
 `;
 
 const App = () => {
@@ -52,9 +49,7 @@ const App = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch(
-        "https://merchant-viewer.herokuapp.com"
-      );
+      const response = await fetch("https://merchant-viewer.herokuapp.com");
       const jsonData = await response.json();
       setData(jsonData);
     };
@@ -65,31 +60,51 @@ const App = () => {
     return <div>Loading...</div>;
   }
 
+  const getMerchantSalesTotal = (merchantId) => {
+    return data.transactions
+      .filter((transaction) => transaction.merchant_id === merchantId)
+      .reduce((total, transaction) => total + parseFloat(transaction.amount), 0)
+      .toFixed(2);
+  };
+
+  const getTerminalSalesTotal = (terminalId) => {
+    return data.transactions
+      .filter((transaction) => transaction.terminal_id === terminalId)
+      .reduce((total, transaction) => total + parseFloat(transaction.amount), 0)
+      .toFixed(2);
+  };
+
   return (
-    <AppContainer>
+    <Container>
       {data.merchants.map((merchant) => (
-        <MerchantContainer key={merchant.id}>
-          <MerchantTitle>{merchant.name}</MerchantTitle>
+        <MerchantCard key={merchant.id}>
+          <MerchantName>{merchant.name}</MerchantName>
+          <TotalSales>
+            <strong>Total Sales:</strong> ${getMerchantSalesTotal(merchant.merchant_id)}
+          </TotalSales>
           {data.terminals
             .filter((terminal) => terminal.merchant_id === merchant.merchant_id)
             .map((terminal) => (
-              <TerminalContainer key={terminal.id}>
-                <TerminalTitle>Terminal {terminal.terminal_id}</TerminalTitle>
+              <TerminalCard key={terminal.id}>
+                <TerminalName>Terminal {terminal.terminal_id}</TerminalName>
+                <Amount>
+                  <strong>Total Sales:</strong> ${getTerminalSalesTotal(terminal.terminal_id)}
+                </Amount>
                 {data.transactions
                   .filter((transaction) => transaction.terminal_id === terminal.terminal_id)
                   .map((transaction) => (
-                    <TransactionContainer key={transaction.id}>
-                      <TransactionTitle>Transaction {transaction.transaction_id}</TransactionTitle>
+                    <TransactionCard key={transaction.id}>
+                      <TransactionName>Transaction {transaction.transaction_id}</TransactionName>
                       <div>Merchant ID: {transaction.merchant_id}</div>
                       <div>Terminal ID: {transaction.terminal_id}</div>
                       <div>Amount: ${transaction.amount}</div>
-                    </TransactionContainer>
+                    </TransactionCard>
                   ))}
-              </TerminalContainer>
+              </TerminalCard>
             ))}
-        </MerchantContainer>
+        </MerchantCard>
       ))}
-    </AppContainer>
+    </Container>
   );
 };
 
