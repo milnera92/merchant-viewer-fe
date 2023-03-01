@@ -12,36 +12,39 @@ const App = () => {
     fetchData();
   }, []);
 
-
-
-if (!data) {
-  return <div>Loading...</div>;
-}
-console.log(data);
-
+  if (!data) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div>
-    <div>
-      <h1>Merchants:</h1>
-      {data.merchants.map((merchant) => (
-        <div key={merchant.id}>{merchant.name}</div>
-      ))}
-    </div>
-
-    <div>
-      <h1>Terminals:</h1>
-      {data.terminals.map((terminal) => (
-        <div key={terminal.id}>LOCATION{terminal.location}</div>
-      ))}
-    </div>
-
-    <div>
-      <h1>Transactions:</h1>
-      {data.transactions.map((transaction) => (
-        <div key={transaction.id}>ID{transaction.terminal_id}${transaction.amount}</div>
-      ))}
-    </div>
+      <div>
+        <h1>Merchants:</h1>
+        {data.merchants.map((merchant) => (
+          <div key={merchant.id}>
+            {merchant.name} ({merchant.id})
+            <ul>
+              {data.terminals.map((terminal) =>
+                terminal.merchant_id === merchant.id ? (
+                  <li key={terminal.id}>
+                    {terminal.location} ({terminal.id})
+                    <ul>
+                      {data.transactions.map((transaction) =>
+                        transaction.merchant_id === merchant.id &&
+                        transaction.terminal_id === terminal.terminal_id ? (
+                          <li key={transaction.id}>
+                            ${transaction.amount}
+                          </li>
+                        ) : null
+                      )}
+                    </ul>
+                  </li>
+                ) : null
+              )}
+            </ul>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
