@@ -10,9 +10,9 @@ The front end is hosted on both Render and Vercel (for testing purposes) but the
 
 ## ToDo
 - change TID, MID in SQL 
-- add style
+- Stlye broke and do not have it fully back yet, needs work
 - add merchant names, addresses, email address
-- add merchant and terminal totals
+- ~~add merchant and terminal totals~~
 - format Readme correctly, it's a mess
 
 ## So Far....
@@ -42,6 +42,9 @@ The front end is hosted on both Render and Vercel (for testing purposes) but the
 
 - Now we can see the final result:
 ![image](https://user-images.githubusercontent.com/95140821/222037158-d0792060-eb40-4a88-9574-17cdfc04153e.png)
+
+- Added functions for Merchant and Terminal totals:
+![image](https://user-images.githubusercontent.com/95140821/222202301-eba1d590-8ed3-46e3-abe4-0a848559c6a7.png)
 
 
 
