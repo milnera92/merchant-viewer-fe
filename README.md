@@ -1,70 +1,47 @@
-# Getting Started with Create React App
+## Merchant Dashboard
+Backend is located here: https://github.com/milnera92/merchant-viewer-be. It is a PHP Server hosted on Heroku.
+- Server: https://merchant-viewer.herokuapp.com/
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview
+This project consists of a MySQL database containined merchant transaction information. The Database is hosted on AWS RDS, and is being accessed from a PHP server I have written and hosted on Heroku.
+I have written a React front end to consume the JSON data being parsed from the PHP server, and displaying it as a "Merchant Portal" to view transactions.
+The front end is hosted on both Render and Vercel (for testing purposes) but ther Render.com one is the version being publicly displayed.
+- https://merchant-viewer.onrender.com/
 
-## Available Scripts
+## ToDo
+- change TID, MID in SQL 
+- add style
+- add merchant names, addresses, email address
+- add merchant and terminal totals
+- format Readme correctly, it's a mess
 
-In the project directory, you can run:
+## So Far....
 
-### `npm start`
+- Started by created a MySQL Database hosted on Amazon Web Services RDS:
+![image](https://user-images.githubusercontent.com/95140821/222036055-c6e3ee06-937c-4172-acd1-c1ccc94e382a.png)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- Next, I went to MySQL Workbench and connect to the database. We will make a new schema, and start creating some tables:
+![image](https://user-images.githubusercontent.com/95140821/222036218-187d5145-2bab-4320-985e-f43cafad6b12.png)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- Seeding in some test data:
+![image](https://user-images.githubusercontent.com/95140821/222036266-23b43589-c628-4c60-acf5-1399595187c5.png)
 
-### `npm test`
+- Next I will start a new PHP project by running <code>composer init</code> in my working directory, along with phpdotenv. From there, I will create a .env file and add my AWS database login credentials as enviroment vaiables.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Here I am accessing them in my PHP code. 
+![image](https://user-images.githubusercontent.com/95140821/222036750-0060e1af-4cc1-48d3-8997-61b3af4df96c.png)
 
-### `npm run build`
+- Note I am not importing Dotenv due to the .env key/value pairs being stored in Heroku settings.
+![image](https://user-images.githubusercontent.com/95140821/222036928-8dd8e140-def4-4537-b583-d4d113ca64dd.png)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Get all data from all tables in database, and format it as a JSON response that will be consumable via fetch request from  React Front end:
+![image](https://user-images.githubusercontent.com/95140821/222037056-f9df5ee7-f231-4472-a253-02b33f593005.png)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Here is the fetch request in React. After this, I map through the data:
+![image](https://user-images.githubusercontent.com/95140821/222037117-d6f6dc9b-3d60-406e-83ab-670c3a6492b7.png)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Now we can see the final result:
+![image](https://user-images.githubusercontent.com/95140821/222037158-d0792060-eb40-4a88-9574-17cdfc04153e.png)
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
