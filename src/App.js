@@ -4,9 +4,16 @@ import styled from "styled-components";
 const Container = styled.div`
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  background-color: #70a3e3;
-  padding: 10px;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 20px;
+  background-color: #3b5998;
+  color: black;
+  gap: 20px;
+
+  & > div {
+    width: 300px;
+  }
 `;
 
 const Card = styled.div`
