@@ -3,15 +3,13 @@ import styled from "styled-components";
 
 const Container = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  flex-wrap: wrap;
-  gap: 20px;
   padding: 20px;
-  min-height: 100vh;
   background-color: #3b5998;
   color: black;
+  gap: 20px;
 `;
 
 const Card = styled.div`
@@ -19,9 +17,10 @@ const Card = styled.div`
   border: 4px solid #a6c8ff;
   box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
   border-radius: 10px;
-  margin: 10px auto;
+  margin: 10px;
   padding: 10px;
-  width: 350px;
+  width: 100%;
+  max-width: 800px;
 `;
 
 const Header = styled.header`
@@ -34,21 +33,25 @@ const Header = styled.header`
 
 const Footer = styled.footer`
   background-color: #3b5998;
+  border-top: 2px solid black;
   color: #fff;
   padding: 20px;
   text-align: center;
-  border-top: 2px solid black;
 `;
 
 const MerchantCard = styled(Card)`
-  width: 100%;
+  max-width: 500px;
 `;
 
 const MerchantName = styled.h2`
   color: #444;
 `;
 
-const TerminalCard = styled(Card)``;
+const TerminalCard = styled(Card)`
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+`;
 
 const TerminalName = styled.h3`
   color: #777;
@@ -64,7 +67,6 @@ const TransactionName = styled.h4`
 
 const TotalSales = styled.div`
   color: #444;
-  margin-top: auto;
 `;
 
 const Amount = styled.div`
