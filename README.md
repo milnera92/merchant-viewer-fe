@@ -1,5 +1,6 @@
 ## Merchant Dashboard
 Backend is located here: https://github.com/milnera92/merchant-viewer-be. It is a PHP Server hosted on Heroku.
+Server: https://merchant-viewer.herokuapp.com/
 
 ## Overview
 This project consists of a MySQL database containined merchant transaction information. The Database is hosted on AWS RDS, and is being accessed from a PHP server I have written and hosted on Heroku.
