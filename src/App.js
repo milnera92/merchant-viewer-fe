@@ -2,34 +2,42 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
 const Container = styled.div`
-  background-color: #f2f2f2;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  background-color: #70a3e3;
   padding: 10px;
 `;
 
-const MerchantCard = styled.div`
-  border: 1px solid #ccc;
+const Card = styled.div`
+  background-color: #fff;
+  border: 4px solid #a6c8ff;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  margin: 10px;
   padding: 10px;
-  margin-bottom: 10px;
+  width: 350px;
+`;
+
+const MerchantCard = styled(Card)`
+  width: 100%;
 `;
 
 const MerchantName = styled.h2`
   color: #444;
 `;
 
-const TerminalCard = styled.div`
-  border: 1px solid #ddd;
-  padding: 10px;
-  margin-bottom: 10px;
+const TerminalCard = styled(Card)`
+  display: flex;
+  flex-direction: column;
 `;
 
 const TerminalName = styled.h3`
   color: #777;
 `;
 
-const TransactionCard = styled.div`
-  border: 1px solid #eee;
-  padding: 10px;
-  margin-bottom: 10px;
+const TransactionCard = styled(Card)`
+  margin-top: 10px;
 `;
 
 const TransactionName = styled.h4`
@@ -82,26 +90,28 @@ const App = () => {
           <TotalSales>
             <strong>Total Sales:</strong> ${getMerchantSalesTotal(merchant.merchant_id)}
           </TotalSales>
-          {data.terminals
-            .filter((terminal) => terminal.merchant_id === merchant.merchant_id)
-            .map((terminal) => (
-              <TerminalCard key={terminal.id}>
-                <TerminalName>Terminal {terminal.terminal_id}</TerminalName>
-                <Amount>
-                  <strong>Total Sales:</strong> ${getTerminalSalesTotal(terminal.terminal_id)}
-                </Amount>
-                {data.transactions
-                  .filter((transaction) => transaction.terminal_id === terminal.terminal_id)
-                  .map((transaction) => (
-                    <TransactionCard key={transaction.id}>
-                      <TransactionName>Transaction {transaction.transaction_id}</TransactionName>
-                      <div>Merchant ID: {transaction.merchant_id}</div>
-                      <div>Terminal ID: {transaction.terminal_id}</div>
-                      <div>Amount: ${transaction.amount}</div>
-                    </TransactionCard>
-                  ))}
-              </TerminalCard>
-            ))}
+          <div>
+            {data.terminals
+              .filter((terminal) => terminal.merchant_id === merchant.merchant_id)
+              .map((terminal) => (
+                <TerminalCard key={terminal.id}>
+                  <TerminalName>Terminal {terminal.terminal_id}</TerminalName>
+                  <Amount>
+                    <strong>Total Sales:</strong> ${getTerminalSalesTotal(terminal.terminal_id)}
+                  </Amount>
+                  {data.transactions
+                    .filter((transaction) => transaction.terminal_id === terminal.terminal_id)
+                    .map((transaction) => (
+                      <TransactionCard key={transaction.id}>
+                        <TransactionName>Transaction {transaction.transaction_id}</TransactionName>
+                        <div>Merchant ID: {transaction.merchant_id}</div>
+                        <div>Terminal ID: {transaction.terminal_id}</div>
+                        <div>Amount: ${transaction.amount}</div>
+                      </TransactionCard>
+                    ))}
+                </TerminalCard>
+              ))}
+          </div>
         </MerchantCard>
       ))}
     </Container>
