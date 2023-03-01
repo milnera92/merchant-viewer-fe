@@ -10,7 +10,7 @@ The front end is hosted on both Render and Vercel (for testing purposes) but the
 
 ## ToDo
 - change TID, MID in SQL 
-- Stlye broke and do not have it fully back yet, needs work
+- ~~Style broke and do not have it fully back yet, needs work~~
 - add merchant names, addresses, email address
 - ~~add merchant and terminal totals~~
 - format Readme correctly, it's a mess
