@@ -5,6 +5,7 @@ Backend is located here: https://github.com/milnera92/merchant-viewer-be. It is 
 - change TID, MID in SQL 
 - add style
 - add merchant names, addresses, email address
+- format Readme correctly, it's a mess
 
 ## So Far....
 
