@@ -1,6 +1,7 @@
 
 ## SOME TOTALS ARE NOT DISPLAYING CORRECTLY, FIXING NOW 
-- Working on restoring a backup of the database in AWS, use that
+- ~~Working on restoring a backup of the database in AWS, use that~~
+- Terminal totals are working. Added some names and more test data, and endpoint also returns batch totals now. But need to use those for terminal totals and then add those togther for merchant totals.
 
 ## Merchant Dashboard
 Backend is located here: https://github.com/milnera92/merchant-viewer-be. It is a PHP Server hosted on Heroku.
