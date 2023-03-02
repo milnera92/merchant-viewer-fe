@@ -90,10 +90,15 @@ const App = () => {
   }
 
   const getMerchantSalesTotal = (merchantId) => {
-    return data.transactions
-      .filter((transaction) => transaction.merchant_id === merchantId)
-      .reduce((total, transaction) => total + parseFloat(transaction.amount), 0)
-      .toFixed(2);
+    const merchantTerminals = data.terminals.filter(
+      (terminal) => terminal.merchant_id === merchantId
+    );
+    const batchTotals = merchantTerminals.map((terminal) =>
+      data.transactions
+        .filter((transaction) => transaction.terminal_id === terminal.terminal_id)
+        .reduce((total, transaction) => total + parseFloat(transaction.amount), 0)
+    );
+    return batchTotals.reduce((total, batchTotal) => total + batchTotal, 0).toFixed(2);
   };
 
   const getTerminalSalesTotal = (terminalId) => {
@@ -112,14 +117,14 @@ const App = () => {
         <MerchantCard key={merchant.id}>
           <MerchantName>{merchant.name}</MerchantName>
           <TotalSales>
-            <strong>Total Sales:</strong> ${getMerchantSalesTotal(merchant.merchant_id)}
+            <strong>Total Sales:</strong> ${getMerchantSalesTotal(merchant.id)}
           </TotalSales>
           <div>
             {data.terminals
               .filter((terminal) => terminal.merchant_id === merchant.merchant_id)
               .map((terminal) => (
                 <TerminalCard key={terminal.id}>
-                  <TerminalName>Terminal {terminal.terminal_id}</TerminalName>
+                  <TerminalName>Terminal {terminal.id}</TerminalName>
                   <Amount>
                     <strong>Total Sales:</strong> ${getTerminalSalesTotal(terminal.terminal_id)}
                   </Amount>
