@@ -1,3 +1,6 @@
+
+## SOME TOTALS ARE NOT DISPLAYING CORRECTLY, FIXING NOW 
+
 ## Merchant Dashboard
 Backend is located here: https://github.com/milnera92/merchant-viewer-be. It is a PHP Server hosted on Heroku.
 - Server: https://merchant-viewer.herokuapp.com/
