@@ -1,7 +1,15 @@
 
 ## SOME TOTALS ARE NOT DISPLAYING CORRECTLY, FIXING NOW 
 - ~~Working on restoring a backup of the database in AWS, use that~~
-- Terminal totals are working. Added some names and more test data, and endpoint also returns batch totals now. But need to use those for terminal totals and then add those togther for merchant totals.
+- ~~Terminal totals are working. Added some names and more test data, and endpoint also returns batch totals now. But need to use those for terminal totals and then add those togther for merchant totals.~~
+
+## UPDATE
+- Fixed terminal and merchant totals
+- Fixed incorrect MID showing on transactions
+- added merchant info, ex address
+- added terminal location
+
+- I was able to fixed a lot of this through SQL Workbench, as well as changing the function that addes the terminal and merchant totals. A <code>terminal_batch_totals</code> table was added to the database, to make things easier.
 
 ## Merchant Dashboard
 Backend is located here: https://github.com/milnera92/merchant-viewer-be. It is a PHP Server hosted on Heroku.
