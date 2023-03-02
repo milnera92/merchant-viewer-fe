@@ -133,7 +133,6 @@ const App = () => {
                     .map((transaction) => (
                       <TransactionCard key={transaction.id}>
                         <TransactionName>Transaction {transaction.transaction_id}</TransactionName>
-                        <div>Merchant ID: {transaction.merchant_id}</div>
                         <div>Terminal ID: {transaction.terminal_id}</div>
                         <div>Amount: ${transaction.amount}</div>
                       </TransactionCard>
