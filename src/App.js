@@ -119,12 +119,16 @@ const App = () => {
           <TotalSales>
             <strong>Total Sales:</strong> ${getMerchantSalesTotal(merchant.id)}
           </TotalSales>
+          <div>{merchant.address}</div>
+          <div>{merchant.phone}</div>
+          <div>{merchant.email}</div>
           <div>
             {data.terminals
               .filter((terminal) => terminal.merchant_id === merchant.merchant_id)
               .map((terminal) => (
                 <TerminalCard key={terminal.id}>
                   <TerminalName>Terminal {terminal.id}</TerminalName>
+                  <div>{terminal.location}</div>
                   <Amount>
                     <strong>Total Sales:</strong> ${getTerminalSalesTotal(terminal.terminal_id)}
                   </Amount>
@@ -133,6 +137,8 @@ const App = () => {
                     .map((transaction) => (
                       <TransactionCard key={transaction.id}>
                         <TransactionName>Transaction {transaction.transaction_id}</TransactionName>
+                        <div>Merchant ID: {transaction.merchant_id}</div>
+                        <div>Transaction ID: {transaction.transaction_id}</div>
                         <div>Terminal ID: {transaction.terminal_id}</div>
                         <div>Amount: ${transaction.amount}</div>
                       </TransactionCard>
