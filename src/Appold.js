@@ -75,9 +75,6 @@ const Amount = styled.div`
 
 const App = () => {
   const [data, setData] = useState(null);
-  const [selectedMerchant, setSelectedMerchant] = useState(null);
-  const [selectedTerminal, setSelectedTerminal] = useState(null);
-  const [saleAmount, setSaleAmount] = useState('');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -87,47 +84,6 @@ const App = () => {
     };
     fetchData();
   }, []);
-
-  const handleMerchantChange = (event) => {
-    setSelectedMerchant(event.target.value);
-    setSelectedTerminal(null);
-  };
-
-  const handleTerminalChange = (event) => {
-    setSelectedTerminal(event.target.value);
-  };
-
-  const handleSaleAmountChange = (event) => {
-    setSaleAmount(event.target.value);
-  };
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    console.log(`Merchant: ${selectedMerchant}, Terminal: ${selectedTerminal}, Sale Amount: ${saleAmount}`);
-  
-    // Send data to server
-    const formData = new FormData();
-    formData.append('merchant_id', selectedMerchant);
-    formData.append('terminal_id', selectedTerminal);
-    formData.append('amount', saleAmount);
-  
-    try {
-      const response = await fetch('https://merchant-viewer.herokuapp.com', {
-        method: 'POST',
-        body: formData
-      });
-  
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-  
-      // Handle response from server
-      const responseData = await response.json();
-      console.log(responseData);
-    } catch (error) {
-      console.error('Error:', error);
-    }
-  };
 
   if (!data) {
     return <div>Loading...</div>;
@@ -154,40 +110,9 @@ const App = () => {
 
   return (
     <Container>
-      <Header>
+            <Header>
         <h1>Merchant Portal</h1>
       </Header>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Select a Merchant:
-          <select value={selectedMerchant} onChange={handleMerchantChange}>
-            <option value="">Please select a merchant</option>
-            {data.merchants.map((merchant) => (
-              <option key={merchant.id} value={merchant.id}>{merchant.name}</option>
-            ))}
-          </select>
-        </label>
-        {selectedMerchant && (
-          <label>
-            Select a Terminal:
-            <select value={selectedTerminal} onChange={handleTerminalChange}>
-              <option value="">Please select a terminal</option>
-              {data.terminals
-                .filter((terminal) => terminal.merchant_id === selectedMerchant)
-                .map((terminal) => (
-                  <option key={terminal.id} value={terminal.terminal_id}>{terminal.location}</option>
-                ))}
-            </select>
-          </label>
-        )}
-        {selectedTerminal && (
-          <label>
-            Sale Amount:
-            <input type="number" value={saleAmount} onChange={handleSaleAmountChange} />
-          </label>
-        )}
-        <button type="submit" disabled={!selectedTerminal || !saleAmount}>Submit</button>
-      </form>
       {data.merchants.map((merchant) => (
         <MerchantCard key={merchant.id}>
           <MerchantName>{merchant.name}</MerchantName>
