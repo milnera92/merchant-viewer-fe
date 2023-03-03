@@ -1,3 +1,4 @@
+- POST currently gives 200 success but silently fails updating SQL database
 
 ## SOME TOTALS ARE NOT DISPLAYING CORRECTLY, FIXING NOW 
 - ~~Working on restoring a backup of the database in AWS, use that~~
