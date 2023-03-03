@@ -103,7 +103,7 @@ const App = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(`Merchant: ${selectedMerchant}, Terminal: ${selectedTerminal}, Sale Amount: ${saleAmount}`);
+    // console.log(`Merchant: ${selectedMerchant}, Terminal: ${selectedTerminal}, Sale Amount: ${saleAmount}`);
   
     // Send data to server
     const formData = new FormData();
@@ -113,6 +113,7 @@ const App = () => {
   
     try {
       const response = await fetch('https://merchant-viewer.herokuapp.com', {
+        // headers: { 'Content-Type': 'application/json' },
         method: 'POST',
         body: formData
       });
@@ -124,6 +125,8 @@ const App = () => {
       // Handle response from server
       const responseData = await response.json();
       console.log(responseData);
+      console.log(formData);
+      console.log(selectedMerchant);
     } catch (error) {
       console.error('Error:', error);
     }
@@ -157,6 +160,7 @@ const App = () => {
       <Header>
         <h1>Merchant Portal</h1>
       </Header>
+      {data && (
       <form onSubmit={handleSubmit}>
         <label>
           Select a Merchant:
@@ -188,6 +192,7 @@ const App = () => {
         )}
         <button type="submit" disabled={!selectedTerminal || !saleAmount}>Submit</button>
       </form>
+      )}
       {data.merchants.map((merchant) => (
         <MerchantCard key={merchant.id}>
           <MerchantName>{merchant.name}</MerchantName>
